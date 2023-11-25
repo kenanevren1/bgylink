@@ -72,7 +72,6 @@
             font-weight: bold;
         }
 
-        /* Animasyonlu efekt */
         @keyframes pulse {
             0% {
                 transform: scale(1);
@@ -85,73 +84,58 @@
             }
         }
 
-        /* Emoji ekleyelim */
         input::before {
-            content: "\1F60D"; /* Gülen yüz emoji Unicode kodu */
+            content: "\1F60D";
             font-size: 24px;
             margin-right: 10px;
         }
 
-        /* Animasyonu uygula */
         input:hover::before {
             animation: pulse 1s infinite;
         }
 
-        /* Font Awesome ikonlarını kullan */
         .fa-check {
-            color: #4CAF50;
+            color: rgb(255, 255, 255) 11);
+            margin-right: 5px;
         }
 
         .fa-copy {
-            color: #66afe9;
+            margin-right: 5px;
         }
     </style>
 </head>
 <body>
-
-    <h2>Koyu Tema ve Inputlar</h2>
+    <h2>bgylink temizle <a href="https://www.facebook.com/profile.php?id=100081329935887">kenan evren</a></h2>
 
     <div class="input-container">
-        <label for="textInput">Metin:</label>
+        <label for="textInput">temizlencek</label>
         <input type="text" id="textInput" placeholder="Metin girin">
     </div>
 
-    <button onclick="temizle()">Temizle</button>
+    <button onclick="temizle()">Temizle <i class="fas fa-check"></i></button>
 
     <div class="input-container">
-        <label for="sonuc">Temizlenmiş Metin:</label>
+        <label for="sonuc">temızlenmıs</label>
         <textarea id="sonuc" rows="4" readonly></textarea>
-        <button onclick="kopyala()">Kopyala <i class="fas fa-copy"></i></button>
+        <button onclick="kopyala()">Kopyala <i class="far fa-copy"></i> </button>
     </div>
 
     <script>
         function temizle() {
-            // Input alanındaki metni al
             var metin = document.getElementById('textInput').value;
-
-            // Emojileri temizle
             var temizlenmisMetin = metin.replace(/[\uD800-\uDFFF]./g, '');
-
-            // Boşlukları temizle
             temizlenmisMetin = temizlenmisMetin.replace(/\s/g, '');
-
-            // Sonucu ekrana yazdır
             document.getElementById('sonuc').value = temizlenmisMetin;
         }
 
         function kopyala() {
-            // Temizlenmiş metni al
             var temizlenmisMetin = document.getElementById('sonuc').value;
-
-            // Panoya kopyala
             navigator.clipboard.writeText(temizlenmisMetin).then(function() {
-                // Kopyalandı bildirimi göster
                 alert("Metin kopyalandı!");
             }, function(err) {
                 console.error('Kopyalama başarısız:', err);
             });
         }
     </script>
-
 </body>
 </html>
