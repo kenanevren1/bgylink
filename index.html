@@ -1,1 +1,119 @@
-Test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stil ve Efektler</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            font-size: 18px;
+            color: #555;
+            margin-right: 10px;
+        }
+
+        #textInput {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        #textInput:hover {
+            border-color: #66afe9;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #sonuc {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Animasyonlu efekt */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Emoji ekleyelim */
+        #textInput::before {
+            content: "\1F60D"; /* Gülen yüz emoji Unicode kodu */
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        /* Animasyonu uygula */
+        #textInput:hover::before {
+            animation: pulse 1s infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Emoji ve Stil Efektleri</h2>
+
+    <label for="textInput">Metin:</label>
+    <input type="text" id="textInput" placeholder="Metin girin">
+
+    <button onclick="temizle()">Temizle</button>
+
+    <p id="sonuc"></p>
+
+    <script>
+        function temizle() {
+            // Input alanındaki metni al
+            var metin = document.getElementById('textInput').value;
+
+            // Emojileri temizle
+            var temizlenmisMetin = metin.replace(/[\uD800-\uDFFF]./g, '');
+
+            // Boşlukları temizle
+            temizlenmisMetin = temizlenmisMetin.replace(/\s/g, '');
+
+            // Sonucu ekrana yazdır
+            document.getElementById('sonuc').innerHTML = "Temizlenmiş Metin: " + temizlenmisMetin;
+        }
+    </script>
+
+</body>
+</html>
