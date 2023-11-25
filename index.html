@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stil ve Efektler</title>
+    <title>Koyu Tema ve Inputlar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #1a1a1a;
+            color: #fff;
             text-align: center;
             margin: 0;
             padding: 0;
@@ -15,29 +17,36 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            flex-direction: column;
         }
 
         h2 {
-            color: #333;
+            color: #66afe9;
         }
 
         label {
             font-size: 18px;
-            color: #555;
+            color: #66afe9;
             margin-right: 10px;
         }
 
-        #textInput {
-            padding: 10px;
-            font-size: 16px;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            outline: none;
-            transition: border-color 0.3s ease;
+        .input-container {
+            margin-bottom: 20px;
         }
 
-        #textInput:hover {
-            border-color: #66afe9;
+        input, textarea {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #66afe9;
+            border-radius: 5px;
+            outline: none;
+            width: 100%;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        input:hover, textarea:hover {
+            border-color: #45a049;
         }
 
         button {
@@ -49,6 +58,7 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            margin-bottom: 20px;
         }
 
         button:hover {
@@ -58,7 +68,7 @@
         #sonuc {
             margin-top: 20px;
             font-size: 16px;
-            color: #333;
+            color: #66afe9;
             font-weight: bold;
         }
 
@@ -76,28 +86,43 @@
         }
 
         /* Emoji ekleyelim */
-        #textInput::before {
+        input::before {
             content: "\1F60D"; /* Gülen yüz emoji Unicode kodu */
             font-size: 24px;
             margin-right: 10px;
         }
 
         /* Animasyonu uygula */
-        #textInput:hover::before {
+        input:hover::before {
             animation: pulse 1s infinite;
+        }
+
+        /* Font Awesome ikonlarını kullan */
+        .fa-check {
+            color: #4CAF50;
+        }
+
+        .fa-copy {
+            color: #66afe9;
         }
     </style>
 </head>
 <body>
 
-    <h2>Emoji ve Stil Efektleri</h2>
+    <h2>Koyu Tema ve Inputlar</h2>
 
-    <label for="textInput">Metin:</label>
-    <input type="text" id="textInput" placeholder="Metin girin">
+    <div class="input-container">
+        <label for="textInput">Metin:</label>
+        <input type="text" id="textInput" placeholder="Metin girin">
+    </div>
 
     <button onclick="temizle()">Temizle</button>
 
-    <p id="sonuc"></p>
+    <div class="input-container">
+        <label for="sonuc">Temizlenmiş Metin:</label>
+        <textarea id="sonuc" rows="4" readonly></textarea>
+        <button onclick="kopyala()">Kopyala <i class="fas fa-copy"></i></button>
+    </div>
 
     <script>
         function temizle() {
@@ -111,7 +136,20 @@
             temizlenmisMetin = temizlenmisMetin.replace(/\s/g, '');
 
             // Sonucu ekrana yazdır
-            document.getElementById('sonuc').innerHTML = "Temizlenmiş Metin: " + temizlenmisMetin;
+            document.getElementById('sonuc').value = temizlenmisMetin;
+        }
+
+        function kopyala() {
+            // Temizlenmiş metni al
+            var temizlenmisMetin = document.getElementById('sonuc').value;
+
+            // Panoya kopyala
+            navigator.clipboard.writeText(temizlenmisMetin).then(function() {
+                // Kopyalandı bildirimi göster
+                alert("Metin kopyalandı!");
+            }, function(err) {
+                console.error('Kopyalama başarısız:', err);
+            });
         }
     </script>
 
